@@ -61,9 +61,7 @@ stepnumber=2, numbersep=5pt, frame=shadowbox,  showstringspaces=false, #1}}{}
 			Esperienza di laboratorio && Consegna della relazione \\
 			\emph{\small{25 ottobre 2017}} && \emph{\small{2 novembre 2017}} \\
 		\end{tabular} 
-		
 		\vspace{0.5cm}
-		
 	\end{center}
 \hrule
 \vspace{0.5cm}
@@ -74,52 +72,7 @@ Si determinano sperimentalmente il calore specifico di un campione ignoto, il ca
 \tableofcontents %Indice
 \listoftables %Indice delle tabelle
 \listoffigures %Indice dei grafici
-\pagebreak
-\section{Convenzioni e formule}
-In questa relazione verranno usate le seguenti convenzioni:
-\begin{enumerate}
-	\item sarà usato il punto [ $.$ ] come separatore decimale;
-	\item l'approssimazione decimale della cifra $5$ sarà fatta per eccesso;
-	\item al fine di snellire la relazione e migliorarne la leggibilità, riporteremo nel corpo del documento solamente le tabelle riepilogative e alcuni grafici, e dedicheremo un'appendice finale alle tabelle e ai grafici più dettagliati.
-\end{enumerate}
-Inoltre, si farà riferimento alle seguenti formule:
-\begin{enumerate}
-	\item media 
-	\begin{equation}\label{eq:media}
-	\bar{x} = \frac{1}{N}\sum_{i=1}^Nx_i;
-	\end{equation}
-	\item varianza
-	\begin{equation}\label{eq:varianza}
-	\sigma^2 = \frac{1}{N}\sum_{i=1}^N(x_i-\bar{x})^2;
-	\end{equation}
-	\item deviazione standard
-	\begin{equation}\label{eq:deviazione}
-	\sigma = \sqrt{\sigma^2}.
-	\end{equation}	
-\end{enumerate}
-Per ricavare i parametri della regressione lineare si utilizzeranno le seguenti equazioni: 
-\begin{enumerate}
-	\item coefficiente angolare
-	\begin{equation}\label{eq:coefficienteangolare}
-	\hat{m} = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}\bar{x}^2};
-	\end{equation}
-	\item intercetta
-	\begin{equation}\label{eq:intercetta}
-	\hat{c} = \bar{y} - \hat{m} \cdot \bar{x};
-	\end{equation}
-	\item varianza del coefficiente angolare
-	\begin{equation}\label{eq:varianzacoeff}
-	\var[\hat{m}] = \frac{1}{\var[x]\cdot \sum_{i}\frac{1}{\sigma_{y_i}^2}};
-	\end{equation}
-	\item varianza dell'intercetta 
-	\begin{equation}\label{eq:varianzainter}
-	\var[\hat{c}] = \bar{x^2}\cdot \var[\hat{m}];
-	\end{equation}
-	\item covarianza 
-	\begin{equation}\label{eq:cov}
-	\cov[\hat{m}, \hat{c}] = - \frac{\bar{x}}{\var[\hat{m}]\cdot \sum_{i}\frac{1}{\sigma_{y_i}^2}}.
-	\end{equation}
-\end{enumerate}
+
 %==================================================
 %         SCOPO E DESCRIZIONE DELL'ESPERIENZA
 %==================================================
@@ -134,11 +87,11 @@ Per ricavare i parametri della regressione lineare si utilizzeranno le seguenti 
 \subsection{Strumenti}
 \label{subsec:strumenti}
 \begin{itemize}
-	\item 2 Calorimetri;
+	\item 2 Calorimetri Dewar;
 	\item Bilancia [portata: \SI{8000}{g}, risoluzione: \SI{0.1}{g}, incertezza: \SI{0.03}{g}];
 	\item Cronometro [risoluzione: \SI{0.01}{s}, incertezza: \SI{0.003}{s}];
-	\item Termometro a mercurio [risoluzione: \SI{1}{°C}, incertezza: \SI{0.3}{°C}];
-	\item Termometro a mercurio [risoluzione: \SI{0.2}{°C}, incertezza: \SI{0.03}{°C}];
+	\item Termometro a mercurio [risoluzione: \SI{1}{\degree C}, incertezza: \SI{0.3}{\degree C}];
+	\item Termometro a mercurio [risoluzione: \SI{0.2}{\degree C}, incertezza: \SI{0.03}{\degree C}];
 	\item Agitatore;
 	\item Tappo per calorimetro.
 \end{itemize}
@@ -157,6 +110,104 @@ Per ricavare i parametri della regressione lineare si utilizzeranno le seguenti 
 
 \subsection{Misura del calore latente di fusione del ghiaccio}
 \label{subsec:ghiaccio}
+\paragraph{Modello fisico ideale}
+Il \emph{calore latente di fusione} $\Lambda_f $ è per definizione la quantità di calore assorbita da una massa di ghiaccio unitaria durante il passaggio di stato da solido a liquido, al fine di rompere i legami tra le molecole d'acqua, che avviene ad una temperatura costante. Al fine di fornire una misurazione di questa grandezza, si misceleranno nel calorimetro una massa d'acqua calda $ M_{H_2O} $ alla temperatura $T_{H_2O}$ e una massa di ghiaccio $M_g$ alla temperatura prossima a \SI{0}{\degree C}: i due sistemi termodinamici interagiranno tra loro, il ghiaccio fonderà interamente e quindi la massa d'acqua complessiva si porterà alla temperatura di equilibrio $T_\text{eq}$. Utilizzando il Primo Principio della Termodinamica e approssimando il calorimetro come un contenitore adiabatico si ha
+\begin{equation*}
+\Delta U = Q_{H_2O} + Q_\text{g} - L_{H_2O} - L_\text{g};
+\end{equation*}
+poiché l'energia interna non varia tra l'inizio e la fine del processo e il sistema non compie lavoro si ha $L_{H_2O}=L_\text{g} = 0$ e dunque
+\begin{equation*}
+0 = Q_{H_2O} + Q_\text{g};
+\end{equation*}
+la quantità di calore assorbita dal ghiaccio è data dalla somma tra il calore latente di fusione moltiplicato per la massa di ghiaccio e la quantità di calore assorbita dalla massa di ghiaccio fusa, dunque di una massa d'acqua portata dalla temperatura di \SI{0}{\degree C} alla temperatura di equilibrio pari alla massa del ghiaccio introdotto allo stato solido. Dunque si ottiene
+\begin{equation*}
+c_{H_2O} M_{H_2O} (T_\text{eq}-T_{H_2O}) + c_{H_2O} M_\text{g} T_\text{eq} + \Lambda_f M_g = 0,
+\end{equation*}
+esplicitando per $\Lambda_f$,
+\begin{equation}
+\label{eq:lambda}
+\Lambda_f  = \frac{c_{H_2O}}{M_g}\big[M_{H_2O}(T_{H_2O}-T_\text{eq}) - M_g T_\text{eq}\big]. 
+\end{equation}
+\paragraph{Procedura e presa dati}
+Si è operato nel modo seguente:
+\begin{enumerate}
+\item Si pesa con la bilancia la massa del calorimetro con il tappo;
+\item Si inserisce una massa d'acqua calda nel calorimetro, e lo si chiude con il tappo; 
+\item Si pone il calorimetro sulla bilancia e si determina, per differenza con la pesata precedente, la massa d'acqua $M_{H_2O}$ introdotta;
+\item Si misura con il termometro con divisione \SI{0.2}{\degree C} la temperatura $T_{H_2O}$ della massa d'acqua introdotta;
+\item Si tara la bilancia e si inserisce rapidamente nel calorimetro una massa di ghiaccio $M_g$, misurata direttamente sulla bilancia, costituita da cubetti avvolti in un involucro di plastica; i cubetti si trovano in un bagno d'acqua alla temperatura di \SI{0.4}{\degree C}, perciò si assume che appena introdotti nel calorimetro comincino subito a compiere il passaggio di stato. Quindi si richiude il calorimetro con il tappo;
+\item Si attende che il ghiaccio si sciolga e che la massa di acqua precedentemente solida si porti all'equilibrio termico con la massa d'acqua già presente nel calorimetro. Si misura con il termometro la temperatura di equilibrio $T_\text{eq}$.
+\end{enumerate}
+Per confrontare i valori ottenuti, l'esperienza è stata ripetuta due volte: i dati raccolti sono riportati nelle tabelle~\ref{tab:cal_lat1} e~\ref{tab:cal_lat2}.
+
+
+\begin{table}
+\centering
+\begin{tabular}{c|c}
+\multicolumn{1}{c}{Grandezza} & \multicolumn{1}{c}{Valore} \\
+\hline
+$M_g$			& \SI{81.5 \pm 0.1}{g}	\\
+$M_{H_2O}$		& \SI{896.5 \pm 0.1}{g}	\\
+$c_{H_2O}$		& \SI{4.18 \pm 0.01}{J/g/\degree C}\\
+$T_{H_2O}$		& \SI{52.9 \pm 0.1}{\degree C}\\
+$T_\text{eq}$	& \SI{37.4 \pm 0.1}{\degree C}\\
+\hline
+\end{tabular}
+\caption{Dati raccolti per la misura del calore latente di fusione del ghiaccio, prima prova}
+\label{tab:cal_lat1}
+\end{table}
+\begin{table}
+\centering
+\begin{tabular}{c|c}
+\multicolumn{1}{c}{Grandezza} & \multicolumn{1}{c}{Valore} \\
+\hline
+$M_g$			& \SI{175.7 \pm 0.1}{g}	\\
+$M_{H_2O}$		& \SI{512.4 \pm 0.1}{g}	\\
+$c_{H_2O}$		& \SI{4.18 \pm 0.01}{J/g/\degree C}\\
+$T_{H_2O}$		& \SI{50.0 \pm 0.1}{\degree C}\\
+$T_\text{eq}$	& \SI{7.8 \pm 0.1}{\degree C}\\
+\hline
+\end{tabular}
+\caption{Dati raccolti per la misura del calore latente di fusione del ghiaccio, seconda prova}
+\label{tab:cal_lat2}
+\end{table}
+
+\paragraph{Analisi dati}
+Dal momento che le incertezze sulle temperature sono molto maggiori rispetto a quelle sulle masse, si propagheranno solamente gli errori riguardanti le temperature. Inoltre, poiché una sola delle tre prove sperimentali ha avuto esito ragionevole, si adopereranno gli errori massimi anziché quelli statistici, dunque si attribuirà \SI{0.1}{\degree C} quale incertezza del termometro, data dall'interpolazione a mezza tacca, senza considerare una distribuzione uniforme del valore vero all'interno di un intervallo pari a \SI{0.1}{\degree C}, che avrebbe prodotto una deviazione standard di $0.1 / \sqrt{12} = \SI{0.03}{\degree C}$. L'equazione che permette di calcolare l'incertezza su $\Lambda_f$ è dunque
+\begin{equation}
+\label{eq:err_lambda}
+\begin{aligned}
+\delta{\Lambda_f}^2 &= \Big(\frac{\partial \Lambda_f}{\partial T_{H_2O}}\Big)^2 \delta_{T_{H_2O}}^2 + \Big(\frac{\partial \Lambda_f}{\partial T_{\text{eq}}}\Big)^2 \delta_{T_{\text{eq}}}^2 \\
+&= \Big(c_{H_2O}\frac{M_{H_2O}}{M_g}\Big)^2 \delta_{T_{H_2O}}^2 + \Big(c_{H_2O}\frac{M_{H_2O}+M_g}{M_g}\Big)^2 \delta_{T_{\text{eq}}}^2,
+\end{aligned}
+\end{equation}
+dove con $\delta$ si è indicata l'incertezza massima. Sostituendo i dati raccolti nella~\ref{eq:lambda} e nella~\ref{eq:err_lambda}, si ottiene il valore per il calore latente di fusione del ghiaccio nella prima prova di
+\begin{equation*}
+\boxed{\bf{\Lambda_f = \SI{556 \pm 7}{J / g}}},
+\end{equation*}
+e nella seconda prova di
+\begin{equation*}
+\boxed{\bf{\Lambda_f = \SI{482 \pm 2}{J / g}}}.
+\end{equation*}
+Entrambi i valori sono notevolmente distanti dal valore vero di \SI{333.5}{J / g}, dunque si ritiene che la procedura di presa dati sia stata affetta da un errore sistematico, che ha influenzato le misure di temperatura. In primo luogo, si è osservato che il valore meno distante da quello reale è quello ricavato nel secondo tentativo: riducendo infatti la quantità d'acqua e raddoppiando la massa di ghiaccio inserita, infatti, si è ottenuto un errore minore; confrontando con l'equazione~\ref{eq:err_lambda}, si verifica infatti una tendenza alla riduzione dell'incertezza sul valore del calore latente all'aumentare della massa di ghiaccio rispetto alla massa d'acqua. Tuttavia, bisogna tener conto del fatto che non vi è un limite nella riduzione della massa di acqua calda in favore di quella di ghiaccio, dato dal fatto che la prima deve riuscire a sciogliere per intero la seconda. A riprova di questo, si potrebbe ripetere l'esperienza introducendo masse uguali di ghiaccio e acqua calda, eventualmente quest'ultima ad una temperatura maggiore.
+
+Un secondo ordine di errore si ritiene sia dato dal non aver considerato l'equivalente in massa del calorimetro $M_e$, ossia la misura di una quantità d'acqua che, ipoteticamente posta nel calorimetro insieme con gli altri sistemi termodinamici, assorbirebbe per intero la quantità di calore che è invece dispera attraverso le pareti non idealmente adiabatiche del contenitore. L'equazione~\ref{eq:lambda}, tenendo conto di tale grandezza, diventa
+\begin{equation*}
+\Lambda_f  = \frac{c_{H_2O}}{M_g}\big[(M_{H_2O}+M_e)(T_{H_2O}-T_\text{eq}) - M_g T_\text{eq}\big]. 
+\end{equation*}
+È evidente, comunque, che tale correzione non farebbe altro che peggiorare il risultato già presentato, rendendolo ancora maggiore. Pertanto si ritiene che l'errore non risieda in questa omissione. Eventualmente, si ritiene che il calorimetro possa aver ceduto calore attraverso le pareti durante il processo, come studiato alla sezione~\ref{subsec:dispersione}; i tempi di esecuzione, tuttavia, sono risultati troppo brevi per poter apprezzare cali sensibili della temperatura di equilibrio dovuti alla non adiabaticità delle pareti del calorimetro.
+
+Terzo ordine di errore si ipotizza sia dato dal non aver reso uniforme la massa d'acqua una volta sciolto il ghiaccio, mescolando il sistema termodinamico con l'agitatore al fine di eliminare i rimanenti gradienti di temperatura, che potrebbero aver portato ad una lettura non definitiva della temperatura di equilibrio sul termometro. In una terza prova che qui non è discussa in quanto è risultata eccessivamente affetta da errore per portare un risultato comparabile con gli altri, si è osservato infatti che la temperatura di equilibrio continuava a scendere fino a raggiungere valori prossimi ai \SI{5}{\degree C}, non compatibili con la temperatura di equilibrio che ci si aspetterebbe calcolandola con il valore noto del calore latente di fusione. Si ipotizza pertanto che il sistema termodinamico sia molto instabile durante tutta la durata del processo di scioglimento del ghiaccio e del seguente raggiungimento della temperatura di equilibrio: in una futura ripetizione dell'esperienza, quindi, si ritiene sarebbe necessario attendere fino ad una eventuale risalita della temperatura del sistema, a causa della uniformazione della temperatura dell'acqua contenuta nel calorimetro.
+
+Si riassumono pertanto le possibili migliorie all'esperimento, al fine di conseguire un risultato compatibile con il valore vero:
+\begin{itemize}
+\item Cambiamento della proporzione tra le masse d'acqua e di ghiaccio, con tentativo ponendo $M_g \simeq M_{H_2O}$;
+\item Mescolamento migliore dei sistemi termodinamici all'interno del calorimetro;
+\item Rimozione della plastica che avvolge i cubetti di ghiaccio, che può influire sul calore assorbito dallo stesso;
+\item Attesa maggiore per la acquisizione della temperatura di equilibrio, che si ipotizza possa risalire dopo la discesa iniziale;
+\item Inserimento nel calorimetro della massa di ghiaccio da sola, e quindi aggiunta successiva della massa d'acqua calda per mezzo dei fori presenti nel tappo del calorimetro, in modo da bilanciare meglio le masse e portare la temperatura di equilibrio ad un valore intermedio tra quello dell'acqua calda e quello del ghiaccio, analogamente al caso discusso nella sezione~\ref{subsec:calspec}.
+\end{itemize}
+
 
 \subsection{Determinazione della costante di tempo del termometro a mercurio}
 \label{subsec:temptermo}
@@ -167,7 +218,7 @@ Per ricavare i parametri della regressione lineare si utilizzeranno le seguenti 
 
 
 %==================================================
-%				CONCLUSIONI
+%				    CONCLUSIONI
 %==================================================
 \section{Approfondimenti e considerazioni finali}
 
