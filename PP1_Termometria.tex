@@ -284,10 +284,123 @@ Si riassumono pertanto le possibili migliorie all'esperimento, al fine di conseg
 
 \subsection{Determinazione della costante di tempo del termometro a mercurio}
 \label{subsec:temptermo}
+Per determinare la costante di tempo del termometro è stato realizzato un video che mostrasse contemporaneamente il termometro, inserito in un calorimetro contenente acqua calda, ed un cronometro, attivato all'inserimento del termometro. Osservando il video fotogramma per fotogramma, sono stati raccolti i dati tra due estremi temporali. Per evitare di tenere in considerazione la fase di assestamento del termometro, i primi sedici valori sono stati scartati e viene considerato come istante iniziale quello corrispondente al primo valore utile:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lc}
+\multicolumn{1}{l}{Tempo $[\SI{}{s}]$} & \multicolumn{1}{c}{ Temperatura $[\SI{}{\degree C}]$} \\
+$\pm0.003$ & $\pm0.1$\\[0.1cm] 
+\hline
+0.000 & 37.0 \\
+0.900 & 38.0 \\
+2.250 & 39.0 \\
+3.800 & 40.0 \\
+6.070 & 41.0 \\
+8.300 & 42.0 \\
+12.070 & 43.0 \\
+17.170 & 44.0 \\
+26.600 & 45.0 \\
+54.600 & 45.8 \\
+\end{tabular}
+\end{table}  
+
+
+Facendo il grafico dei valori ottenuti, figura \ref{fig:fit_log}, si osserva che l'andamento della temperatura è descritto da un'esponenziale del tipo:\begin{equation}
+T(t)=T_1-(T_1-T_0)e^{-t/\tau}
+\end{equation}
+Dove $T_1$ è la temperatura dell'acqua contenuta nel calorimetro che, in approssimazione, si assume essere pari all'ultima temperatura registrata e $T_0$ corrisponde alla prima misura utile registrata.
+Per determinare la costante di tempo $\tau$ si rende dunque necessario linearizzare l'equazione:\begin{align}
+&T(t)-T_1= -(T_1-T_0)e^{-t/\tau}\\
+&\log(|T(t)-T_1|)=\log(|-(T_1-T_0)e^{-t/\tau}|)=\log(|T_0-T_1|)-\dfrac{t}{\tau} \label{eqn:log}\\
+&y(t)=A+Bt
+\end{align}
+\\
+Dove:\[
+A=\log(|T_0-T_1|)\qquad B=-\frac{1}{\tau}\qquad y(t)=\log(|T(t)-T_1|)
+\]
+
+
+%Dove:\begin{align*}
+%&A=\log(-(T_1-T_0)\\
+%&B=-\frac{1}{\tau}\\
+%&y(t)=T(t)-T_1
+%\end{align*}
+
+Mediante un fit lineare dell'equazione \ref{eqn:log}, riportato in figura \ref{fig:log}, è possibile estrarre i parametri $A$ e $B$:\begin{align*}
+&A=2.04\pm0.05\\
+&B=-0.0822\pm0.0022
+\end{align*}
+Siamo ora in grado di ricavare la costante di tempo:\[\boxed{
+\tau\pm\sigma_{\tau}=-\dfrac{1}{B}=12.15891 \pm 0.00019
+}\]
+L'incertezza $\sigma_{\tau}$ è stata ricavata dall'errore sul coefficiente angolare mediante l'equazione:\[
+\sigma_{\tau}=\sqrt{\dfrac{1}{\tau^2}\sigma_B^2}
+\]
+E' ora possibile esplicitare l'equazione che descrive l'andamento temporale della temperatura, il cui grafico è riportato, insieme ai dati sperimentali, in figura \ref{fig:fit_log}. Utilizzando per comodità i parametri ricavati precedentemente si ha:\[
+T(t)=T_1+\,e^{A}\,e^{Bt}
+\]
+
+\begin{figure}[H]
+
+\caption{Fit lineare dell'equazione \ref{eqn:log}}
+\label{fig:log}
+\centering
+\includegraphics[scale=0.7]{log}
+
+\caption{Andamento temporale della temperatura registrata dal termometro}
+\label{fig:fit_log}
+\centering
+\includegraphics[scale=0.7]{fit_log}
+
+\end{figure}
+
+
+
+
 
 \subsection{Studio della dispersione di calore del calorimetro}
 \label{subsec:dispersione}
+Per poter stimare al meglio le discrepanze tra il set-up sperimentale a disposizione, e gli strumenti ideali, si cerca di fornire una stima del calore ceduto dal calorimetro all'ambiente.\\
+Si è deciso di versare nel calorimetro acqua calda per poi misurare, ad intervalli di circa $3$ minuti, la temperatura del sistema. L'esperimento ha fornito i seguenti risultati:
 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lc}
+\multicolumn{1}{l}{Tempo $[\SI{}{s}]$} & \multicolumn{1}{c}{ Temperatura $[\SI{}{\degree C}]$} \\
+$\pm0.003$ & $\pm0.1$\\[0.1cm] 
+\hline
+0.000 & 54.5\\
+180.000 & 54.0\\
+360.000& 53.5\\
+600.000 & 53.0\\
+990.000 & 52.0\\
+1200.000 & 51.8\\
+\end{tabular}
+\end{table}
+
+L'incertezza sulle misure di tempo, derivante dall'assunzione di una distribuzione uniforme dell'errore sull'ultimo digit, può, in approssimazione, essere trascurata. La temperatura è invece affetta, come osservato in precedenza, da un errore di $\SI{0.1}{\degree C}$ che andrà ad influire sull'incertezza associata ad i parametri del fit che si intende eseguire. Graficando i valori ottenuti dall'esperimento, figura \ref{fig:cal_t}, è evidente che la temperatura dell'acqua, nel calorimetro, decresce linearmente nel tempo. Si procede dunque all'esecuzione di un fit lineare che fornisce una stima dei parametri $A$ e $B$ dell'equazione regolatrice del processo\footnote{Intercetta e coefficiente angolare.}:\[
+T(t)=A+Bt=54.41\,-\,0.0023\,t
+\]
+L'incertezza da associare ad i parametri ottenuti dall'interpolazione viene calcolata mediante la funzione \texttt{curve\_fit}: contrariamente a \texttt{polyfit}, essa prende in ingresso anche l'incertezza associata alle misure per fornire poi l'errore da attribuire ai parametri\footnote{L'incertezza delle misure corrisponde nelle specifiche della funzione al parametro \texttt{sigma}.}.\\
+Si ha che:\begin{align*}
+&A=54.41\pm0.08\\
+&B=-0.0023\pm0.0001
+\end{align*}
+
+\begin{figure}[H]
+\caption{Andamento temporale della temperatura dell'acqua nel calorimetro}
+\label{fig:cal_t}
+\centering
+\includegraphics[scale=0.8]{fit_calorimetro}
+\end{figure}
+
+
+Non avendo misurato la massa d'acqua inserita nel calorimetro non è ora possibile utilizzare l'equazione\[
+Q=mc\Delta T
+\]
+per determinare la quantità di calore ceduta ed il calore specifico del calorimetro.
 
 
 %==================================================
