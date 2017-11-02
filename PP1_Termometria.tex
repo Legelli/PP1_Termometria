@@ -107,6 +107,79 @@ Si determinano sperimentalmente il calore specifico di un campione ignoto, il ca
 
 \subsection{Misura del calore specifico del campione di metallo}
 \label{subsec:calspec}
+\paragraph{Modello fisico ideale}
+Due corpi a temperatura diversa si scambiano calore fino a raggiungere l'equilibrio termico, ovvero fino a raggiungere una temperatura comune intermedia tra le due temperature iniziali.
+
+In un sistema termodinamico ideale costituito da un recipiente adiabatico, da acqua a temperatura iniziale $T_{H_2O}$ e da un campione di materiale ignoto a temperatura iniziale $T_c < T_{H_2O}$ , acqua e campione si scambiano calore fino a raggiungere una temperatura di equilibrio $T_{eq}$. Per definizione si ha che
+\begin{equation}\label{eq:calore_specifico}
+	Q = m c \Delta T,
+\end{equation} dove $Q$ è il calore scambiato, $m$ la massa, $\Delta T$ la variazione di temperatura e $c$ il \emph{calore specifico} della particolare sostanza. Lo scopo dell'esperimento consiste nella misura del calore specifico del campione di materiale ignoto.
+
+\paragraph{Sistema reale}
+A differenza del modello ideale, il sistema risulta composto anche da aria, la quale occupa il volume rimanente all'interno del recipiente adiabatico, ricordiamo il \emph{primo principio della termodinamica}:
+\begin{equation}\label{eq:primo_principio}
+	\Delta U = Q - L.
+\end{equation} Nel sistema termodinamico considerato non viene compiuto lavoro meccanico, inoltre non si ha variazione di energia interna essendo il sistema chiuso per la presenza del contenitore adiabatico; se esplicitiamo i contributi del calore si ha che
+\begin{equation}\label{eq:relazione_calore}
+	Q_{H_2O} + Q_c + Q_g = 0
+\end{equation} dove $Q_g$ è il calore scambiato dal gas. Vediamo che la quantità $Q_g$ è trascurabile, infatti la densità del gas è molto minore di quella dell'acqua, quindi, essendo i volumi paragonabili, la massa del gas risulterà molto minore di quella del resto del sistema: dalla formula (\ref{eq:calore_specifico}) concludiamo che $Q_g$ è trascurabile rispetto alle altre quantità in $(\ref{eq:relazione_calore})$.
+
+Sostituendo (\ref{eq:calore_specifico}) in (\ref{eq:relazione_calore}) si ricava
+\[
+	m_{H_2O} c_{H_2O} (T_{eq}-T_{H_2O}) = -m_c c_c (T_{eq} - T_c)
+\]
+\begin{equation}\label{eq:formula_calore_specifico}
+	\rightarrow c_c = \frac{m_c}{m_{H_2O}} \left(\frac{T_{eq}-T_c}{T_{H_2O}-T_{eq}}\right) \frac{1}{c_{H_2O}}
+\end{equation}
+Possiamo assumere che le incertezze siano dovute esclusivamente alle misure di temperatura, infatti l'incertezza sulla massa è trascurabile rispetto a quella sulla lettura del termometro e inoltre il calore specifico dell'acqua è noto con una precisione molto elevata: propagando le incertezze su (\ref{eq:formula_calore_specifico}) si ricava
+\begin{align}\label{eq:incertezza_c}
+	\delta_C &= \sqrt{\left(\frac{\delta_{\Delta T}}{T_{eq}-T_c}\right)^2 + \left(\frac{\delta_{\Delta T}}{T_{H_2O}-T_{eq}}\right)^2} \\
+		&= c\delta_{\Delta T} \sqrt{\frac{1}{\left( T_{eq} - T_c\right)^2} + \frac{1}{\left( T_{H_2O} - T_{eq} \right)^2}},
+\end{align} dove $\delta_{\Delta T}$ è l'incertezza sulla differenza di temperature, pari a $\delta_T \sqrt{2}$, e $\delta_T = 0.1$ è l'incertezza massima sulla misura di temperatura.
+
+\paragraph{Procedura e presa dati}
+L'esperimento è stato condotto nel modo seguente:
+\begin{enumerate}
+	\item si sono pesati due campioni dello stesso materiale ignoto e il contenitore adiabatico vuoto;
+	\item si è riempito il contenitore di acqua calda per circa $1/4$ del suo volume;
+	\item si è pesato il contenitore adiabatico pieno;
+	\item si sono immersi i campioni ignoti in acqua lasciata in un contenitore adiabatico aperto, in modo da raggiungere l'equilibrio termico con l'ambiente;
+	\item si sono misurate le temperature del sistema in equilibrio termico col campione e dell'acqua calda all'interno del contenitore adiabatico chiuso;
+	\item si sono spostati i campioni all'interno del contenitore contenente acqua calda, facendo attenzione a non toccarli direttamente per non alternarne la temperatura;
+	\item si è aspettato che acqua calda e campioni raggiungessero l'equilibrio termico e si è misurata la temperatura del sistema.
+\end{enumerate}
+Si è scelto di usare due campioni di materiale per aumentare la massa del campione e minimizzare l'incertezza sulla misura, infatti l'incertezza è tanto più piccola quanto più la temperatura di equilibrio è vicina alla media delle due temperature iniziali.
+In tabella \ref{tab:cs_dati} si riportano i risultati delle misure.
+\begin{table}
+\centering
+\begin{tabular}{c|c}
+\multicolumn{1}{c}{Grandezza} & \multicolumn{1}{c}{Valore} \\
+\hline
+$M_c (1)$			& \SI{195.5 \pm 0.1}{g}	\\
+$M_c (2)$			& \SI{195.4 \pm 0.1}{g}	\\
+$M_{H_2O}$		& \SI{287.0 \pm 0.1}{g}	\\
+$c_{H_2O}$		& \SI{4.18 \pm 0.01}{J/g/\degree C}\\
+$T_{H_2O}$		& \SI{62.3 \pm 0.1}{\degree C}\\
+$T_{c}$		& \SI{29.4 \pm 0.1}{\degree C}\\
+$T_\text{eq}$	& \SI{56.0 \pm 0.1}{\degree C}\\
+\hline
+\end{tabular}
+\caption{Dati raccolti per la misura del calore specifico del campione di sostanza ignota}
+\label{tab:cs_dati}
+\end{table}
+
+Applicando la formula (\ref{eq:formula_calore_specifico}) e utilizzando (\ref{eq:incertezza_c}) si stima il calore specifico della sostanza:
+\begin{equation*}
+\boxed{\bf{c_s = \SI{0.299 \pm 0.007}{J / g}}}.
+\end{equation*} 
+La misura fatta è compatibile con il calore specifico del \emph{rame}, di cui il materiale condivide anche colore e lucentezza. 
+
+Bisogna però dire che non si è tenuto conto di due fattori: 
+\begin{itemize}
+	\item l'equivalente in massa d'acqua del calorimetro;
+	\item la non perfetta adiabaticità del calorimetro.
+\end{itemize} Per la seconda si rimanda alla sezione specifica all'interno di questa relazione, ma comunque il calorimetro perde calore abbastanza lentamente da non risultare significativo. Per il primo fattore d'errore invece non sono possibili stime, essendoci resi conto della sua rilevanza solamente nell'analisi dati a posteriori.
+
 
 \subsection{Misura del calore latente di fusione del ghiaccio}
 \label{subsec:ghiaccio}
