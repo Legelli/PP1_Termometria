@@ -361,7 +361,7 @@ T(t)=T_1+\,e^{A}\,e^{Bt}
 
 \subsection{Studio della dispersione di calore del calorimetro}
 \label{subsec:dispersione}
-Per poter stimare al meglio le discrepanze tra il set-up sperimentale a disposizione, e gli strumenti ideali, si cerca di fornire una stima del calore ceduto dal calorimetro all'ambiente.\\
+Per poter stimare al meglio le discrepanze tra il set-up sperimentale a disposizione e gli strumenti ideali, si cerca di fornire una stima del calore ceduto dal calorimetro all'ambiente.\\
 Si è deciso di versare nel calorimetro acqua calda per poi misurare, ad intervalli di circa $3$ minuti, la temperatura del sistema. L'esperimento ha fornito i seguenti risultati:
 
 
@@ -380,14 +380,25 @@ $\pm0.003$ & $\pm0.1$\\[0.1cm]
 \end{tabular}
 \end{table}
 
-L'incertezza sulle misure di tempo, derivante dall'assunzione di una distribuzione uniforme dell'errore sull'ultimo digit, può, in approssimazione, essere trascurata. La temperatura è invece affetta, come osservato in precedenza, da un errore di $\SI{0.1}{\degree C}$ che andrà ad influire sull'incertezza associata ad i parametri del fit che si intende eseguire. Graficando i valori ottenuti dall'esperimento, figura \ref{fig:cal_t}, è evidente che la temperatura dell'acqua, nel calorimetro, decresce linearmente nel tempo. Si procede dunque all'esecuzione di un fit lineare che fornisce una stima dei parametri $A$ e $B$ dell'equazione regolatrice del processo\footnote{Intercetta e coefficiente angolare.}:\[
+L'incertezza sulle misure di tempo, derivante dall'assunzione di una distribuzione uniforme dell'errore sull'ultimo digit, può, in approssimazione, essere trascurata. La temperatura è invece affetta, come osservato in precedenza, da un errore di $\SI{0.1}{\degree C}$ che andrà ad influire sull'incertezza associata ai parametri del fit che si intende eseguire. Graficando i valori ottenuti dall'esperimento, figura \ref{fig:cal_t}, è evidente che la temperatura dell'acqua, nel calorimetro, decresce linearmente nel tempo. Il motivo di questo andamento deriva dall'approssimazione per tempi brevi dell'andamento esponenziale decrescente 
+\begin{equation*}
+T(t) = T_\text{amb} + (T_0-T_\text{amb})e^{Bt}
+\end{equation*}
+\begin{equation}
+\label{eq:lin_calo}
+\text{$t$ brevi} \; \rightarrow T(t) \simeq T_\text{amb} + (T_0-T_\text{amb})(1+Bt),
+\end{equation}
+dove $T_\text{amb}$ indica la temperatura dell'ambiente esterno, $T_0$ quella iniziale dell'acqua nel calorimetro e $B$ è un parametro che si ricaverà dal fit.
+
+Si procede dunque all'esecuzione di un fit lineare che fornisce una stima dei parametri $A$ e $B$ dell'equazione regolatrice del processo\footnote{Intercetta e coefficiente angolare.}:\[
 T(t)=A+Bt=54.41\,-\,0.0023\,t
 \]
 L'incertezza da associare ad i parametri ottenuti dall'interpolazione viene calcolata mediante la funzione \texttt{curve\_fit}: contrariamente a \texttt{polyfit}, essa prende in ingresso anche l'incertezza associata alle misure per fornire poi l'errore da attribuire ai parametri\footnote{L'incertezza delle misure corrisponde nelle specifiche della funzione al parametro \texttt{sigma}.}.\\
 Si ha che:\begin{align*}
 &A=54.41\pm0.08\\
-&B=-0.0023\pm0.0001
+&B=-0.0023\pm0.0001.
 \end{align*}
+Si osserva che effettivamente, come si sarebbe dovuto ottenere, il valore dell'intercetta $A$ è compatibile con quello previsto dalla legge lineare~\ref{eq:lin_calo}, ossia $A = T_0$.
 
 \begin{figure}[H]
 \caption{Andamento temporale della temperatura dell'acqua nel calorimetro}
