@@ -73,11 +73,18 @@ Si determinano sperimentalmente il calore specifico di un campione ignoto, il ca
 \listoftables %Indice delle tabelle
 \listoffigures %Indice dei grafici
 
+\pagebreak
+
 %==================================================
 %         SCOPO E DESCRIZIONE DELL'ESPERIENZA
 %==================================================
 \section{Scopo e descrizione dell'esperienza}
 \label{sec:descrizione}
+In questa esperienza ci si propone di verificare le proprietà termodinamiche degli strumenti che verranno utilizzati nel corso delle future esercitazioni. Si determinerà pertanto la costante di tempo del termometro a mercurio, che necessita di un certo intervallo per arrivare all'equilibrio termico con il sistema di cui si vuole conoscere la temperatura; si determinerà inoltre la costante di tempo del calorimetro, studiando come esso disperda calore verso l'ambiente a causa della non perfetta adiabaticità delle sue pareti. Si illustrerà anche un procedimento, che verrà messo in atto in una futura esperienza, per determinare l'equivalente in acqua del calorimetro. 
+
+Si determinerà inoltre, come applicazione pratica del primo principio della termodinamica, il calore specifico di un campione di materiale ignoto e il calore latente di fusione del ghiaccio, utilizzando un calorimetro.
+
+Per l'analisi dati si utilizzerà un notebook in linguaggio \emph{Python}.
 
 
 %==================================================
@@ -392,18 +399,19 @@ dove $T_\text{amb}$ indica la temperatura dell'ambiente esterno, $T_0$ quella in
 Si procede dunque all'esecuzione di un fit lineare che fornisce una stima dei parametri $A$ e $B$ dell'equazione regolatrice del processo\footnote{Intercetta e coefficiente angolare.}:\[
 T(t)=A+Bt=54.41\,-\,0.0023\,t
 \]
-L'incertezza da associare ad i parametri ottenuti dall'interpolazione viene calcolata mediante la funzione \texttt{curve\_fit}: contrariamente a \texttt{polyfit}, essa prende in ingresso anche l'incertezza associata alle misure per fornire poi l'errore da attribuire ai parametri\footnote{L'incertezza delle misure corrisponde nelle specifiche della funzione al parametro \texttt{sigma}.}.\\
+L'incertezza da associare ai parametri ottenuti dall'interpolazione viene calcolata mediante la funzione \texttt{curve\_fit}: contrariamente a \texttt{polyfit}, essa prende in ingresso anche l'incertezza associata alle misure per fornire poi l'errore da attribuire ai parametri\footnote{L'incertezza delle misure corrisponde nelle specifiche della funzione al parametro \texttt{sigma}.}.\\
 Si ha che:\begin{align*}
 &A=54.41\pm0.08\\
 &B=-0.0023\pm0.0001.
 \end{align*}
 In linea con le osservazioni precedenti, si può osservare che il valore dell'intercetta $A$ è compatibile con quello indicato dalla legge lineare~\ref{eq:lin_calo}, ovvero: $A \simeq T_0$.
 
-Da quest'esperimento si deduce che, non essendo il calorimetro perfettamente adiabatico, è possibile che errori su misure lunghe siano stati causati proprio dalla registrazione di una temperatura d'equilibrio più bassa di quella che si sarebbe registrata se in possesso di un calorimetro ideale. A posteriori si osserva che sarebbe stato opportuno inserire nel calorimetro, all'inizio dell'esperimento, una massa nota, $m_f$, d'acqua fredda in modo da avere una stima, una volta raggiunto l'equilibrio, della temperatura iniziale del calorimetro, $T_f$.\\
+Da quest'esperimento si deduce che, non essendo il calorimetro perfettamente adiabatico, è possibile che errori su misure lunghe siano stati causati proprio dalla registrazione di una temperatura d'equilibrio più bassa di quella che si sarebbe registrata nel caso ideale. A posteriori si osserva che sarebbe stato opportuno inserire nel calorimetro, all'inizio dell'esperimento, una massa nota, $m_f$, d'acqua fredda in modo da avere una stima, una volta raggiunto l'equilibrio, della temperatura iniziale del calorimetro, $T_f$.\\
 Introducendo successivamente una specifica quantità $m_c$ d'acqua calda ad una temperatura $T_c$, si attende che il sistema raggiunga la temperatura d'equilibrio:\[
 T_{eq}=\dfrac{m_fT_f+m_cT_c}{m_f+m_c}
 \]
-L'equazione deriva dalla supposizione che i calori specifici siano approssimativamente gli stessi per entrambe le masse d'acqua.\\
+L'equazione deriva dalla supposizione che i calori specifici siano approssimativamente gli stessi per entrambe le masse d'acqua.
+
 Solo ora, raggiunto l'equilibrio, si inizia ad analizzare la decrescita della temperatura del sistema che verrà attribuita alla non adiabaticità del calorimetro. Modificando così l'esperimento condotto, oltre ad una stima della variazione di temperatura dovuta alle caratteristiche del calorimetro, è anche possibile valutare la quantità di calore che il calorimetro cede all'ambiente, trovandone il calore specifico $c_{cal}$:\begin{align*}
 &Q_{m_c}+Q_{m_f}+Q_{cal} = 0\\[0.3cm]
 &m_cc_{H2O}(T_{eq}-T_c)+m_fc_{H2O}(T_{eq}-T_f)+M_{cal}c_{cal}(T_{eq}-T_{fine})=0\\[0.3cm]
@@ -424,16 +432,19 @@ Una volta in possesso del calore specifico del calorimetro è possibile rivalutar
 %==================================================
 %				    CONCLUSIONI
 %==================================================
-\section{Approfondimenti e considerazioni finali}
+\section{Considerazioni finali}
+Si ritiene che la misura del calore specifico del materiale incognito sia stata ottenuta con un'incertezza dell'ordine del $2\%$ dal momento che il termometro utilizzato presenta un'incertezza di ordine compreso tra lo $0.2\%$ e lo $0.5\%$ per temperature che variano tra i \SI{20}{\degree C} e i \SI{50}{\degree C}; la reale causa della discrepanza dal valore vero del calore specifico, che è stata rilevata in quanto sono state condotte diverse prove mediante lo stesso procedimento, che hanno portato a risultati differenti, si ritiene sia dovuta alla difficoltà nella determinazione del calore dissipato dal calorimetro durante il processo, e a quello fuoriuscito dal sistema nelle fasi di apertura e chiusura del tappo al fine di inserire i campioni. Sono presenti dunque sorgenti di errore sistematico che non è possibile stimare quantitativamente con la medesima precisione della temperatura indicata dal termometro\footnote{E che per questo non appaiono nella equazione con cui sono state propagate le incertezze.}, e che sono state discusse qualitativamente nel corso della trattazione precedente. 
+
+Allo stesso modo, la misura del calore latente di fusione del ghiaccio si ritiene sia stata maggiormente influenzata da tali errori sistematici dal momento che si è operato entro un intervallo di temperature più ampie, dagli \SI{0}{\degree C} del ghiaccio ai \SI{50}{\degree C} dell'acqua calda, che hanno amplificato le perdite di calore dovute alla non adiabaticità del calorimetro, e la disomogeneità del sistema termodinamico durante il processo di scambio termico, che si reputa sia stata la principale causa della incompatibilità del valore ottenuto con quello vero.
+
+Le misure delle costanti di tempo del termometro e del calorimetro sono invece giudicate precise, dal momento che sono state eseguite interamente con il calorimetro chiuso con il tappo, e dunque le uniche perdite di calore sono state dovute alla non perfetta adiabaticità delle sue pareti.
+
+In una prossima esperienza ci si propone di determinare anche l'equivalente in acqua del calorimetro al fine di completare lo studio delle proprietà termodinamiche dello stesso.
 
 
 
 
-%==================================================
-%       			APPENDICE
-%==================================================
 
-\section{Appendice: tabelle e grafici}
 
 
 \end{document}
