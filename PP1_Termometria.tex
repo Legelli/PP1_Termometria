@@ -309,7 +309,7 @@ $\pm0.003$ & $\pm0.1$\\[0.1cm]
 Facendo il grafico dei valori ottenuti, figura \ref{fig:fit_log}, si osserva che l'andamento della temperatura è descritto da un'esponenziale del tipo:\begin{equation}
 T(t)=T_1-(T_1-T_0)e^{-t/\tau}
 \end{equation}
-Dove $T_1$ è la temperatura dell'acqua contenuta nel calorimetro che, in approssimazione, si assume essere pari all'ultima temperatura registrata e $T_0$ corrisponde alla prima misura utile registrata.
+Dove $T_1$ è la temperatura dell'acqua contenuta nel calorimetro che, in approssimazione, si assume essere pari all'ultima temperatura registrata e $T_0$ corrisponde alla prima misura utile di temperatura.
 Per determinare la costante di tempo $\tau$ si rende dunque necessario linearizzare l'equazione:\begin{align}
 &T(t)-T_1= -(T_1-T_0)e^{-t/\tau}\\
 &\log(|T(t)-T_1|)=\log(|-(T_1-T_0)e^{-t/\tau}|)=\log(|T_0-T_1|)-\dfrac{t}{\tau} \label{eqn:log}\\
@@ -341,22 +341,21 @@ E' ora possibile esplicitare l'equazione che descrive l'andamento temporale dell
 T(t)=T_1+\,e^{A}\,e^{Bt}
 \]
 
+Si osserva dall'esperimento che, superato un transiente iniziale, la risposta del termometro è esponenziale e si stabilizza rapidamente intorno alla temperatura del sistema.
+
 \begin{figure}[H]
 
 \caption{Fit lineare dell'equazione \ref{eqn:log}}
 \label{fig:log}
 \centering
-\includegraphics[scale=0.7]{log}
+\includegraphics[scale=0.67]{log}
 
 \caption{Andamento temporale della temperatura registrata dal termometro}
 \label{fig:fit_log}
 \centering
-\includegraphics[scale=0.7]{fit_log}
+\includegraphics[scale=0.67]{fit_log}
 
 \end{figure}
-
-
-
 
 
 \subsection{Studio della dispersione di calore del calorimetro}
@@ -398,7 +397,20 @@ Si ha che:\begin{align*}
 &A=54.41\pm0.08\\
 &B=-0.0023\pm0.0001.
 \end{align*}
-Si osserva che effettivamente, come si sarebbe dovuto ottenere, il valore dell'intercetta $A$ è compatibile con quello previsto dalla legge lineare~\ref{eq:lin_calo}, ossia $A = T_0$.
+In linea con le osservazioni precedenti, si può osservare che il valore dell'intercetta $A$ è compatibile con quello indicato dalla legge lineare~\ref{eq:lin_calo}, ovvero: $A \simeq T_0$.
+
+Da quest'esperimento si deduce che, non essendo il calorimetro perfettamente adiabatico, è possibile che errori su misure lunghe siano stati causati proprio dalla registrazione di una temperatura d'equilibrio più bassa di quella che si sarebbe registrata se in possesso di un calorimetro ideale. A posteriori si osserva che sarebbe stato opportuno inserire nel calorimetro, all'inizio dell'esperimento, una massa nota, $m_f$, d'acqua fredda in modo da avere una stima, una volta raggiunto l'equilibrio, della temperatura iniziale del calorimetro, $T_f$.\\
+Introducendo successivamente una specifica quantità $m_c$ d'acqua calda ad una temperatura $T_c$, si attende che il sistema raggiunga la temperatura d'equilibrio:\[
+T_{eq}=\dfrac{m_fT_f+m_cT_c}{m_f+m_c}
+\]
+L'equazione deriva dalla supposizione che i calori specifici siano approssimativamente gli stessi per entrambe le masse d'acqua.\\
+Solo ora, raggiunto l'equilibrio, si inizia ad analizzare la decrescita della temperatura del sistema che verrà attribuita alla non adiabaticità del calorimetro. Modificando così l'esperimento condotto, oltre ad una stima della variazione di temperatura dovuta alle caratteristiche del calorimetro, è anche possibile valutare la quantità di calore che il calorimetro cede all'ambiente, trovandone il calore specifico $c_{cal}$:\begin{align*}
+&Q_{m_c}+Q_{m_f}+Q_{cal} = 0\\[0.3cm]
+&m_cc_{H2O}(T_{eq}-T_c)+m_fc_{H2O}(T_{eq}-T_f)+M_{cal}c_{cal}(T_{eq}-T_{fine})=0\\[0.3cm]
+&c_{cal}=\dfrac{c_{H2O}\left(m_c\left(T_{eq}-T_c\right)+m_f\left(T_{eq}-T_r\right)\right)}{M_{cal}(T_{eq}-T_{fine})}
+\end{align*}
+Dove $T_{fine}$ è l'ultima registrazione di temperatura effettuata nell'esperimento, ed $M_{cal}$ la massa del calorimetro.\\
+Una volta in possesso del calore specifico del calorimetro è possibile rivalutare i risultati dei vari esperimenti tenendo in conto anche la quantità di calore che viene assorbita dal calorimetro.
 
 \begin{figure}[H]
 \caption{Andamento temporale della temperatura dell'acqua nel calorimetro}
@@ -407,11 +419,6 @@ Si osserva che effettivamente, come si sarebbe dovuto ottenere, il valore dell'i
 \includegraphics[scale=0.8]{fit_calorimetro}
 \end{figure}
 
-
-Non avendo misurato la massa d'acqua inserita nel calorimetro non è ora possibile utilizzare l'equazione\[
-Q=mc\Delta T
-\]
-per determinare la quantità di calore ceduta ed il calore specifico del calorimetro.
 
 
 %==================================================
